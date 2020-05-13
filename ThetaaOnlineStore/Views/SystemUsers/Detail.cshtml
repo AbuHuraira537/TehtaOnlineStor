@@ -1,0 +1,44 @@
+﻿@model SystemUser
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "_LayoutAdmin";
+}
+
+<h1 class="alert-primary">Detail of @Model.DisplayName</h1>
+
+<div class="row">
+
+    <div class="col-md-4">Name</div>
+    <div class="col-md-8">@Model.UserName</div>
+
+    <div class="col-md-4">PAssword</div>
+    <div class="col-md-8">@Model.Password</div>
+
+    <div class="col-md-4">Email</div>
+    <div class="col-md-8">@Model.Email</div>
+
+    <div class="col-md-4">MobileNo</div>
+    <div class="col-md-8">@Model.Mobile</div>
+
+    <div class="col-md-4">Status</div>
+    <div class="col-md-8">@Model.Status</div>
+
+    <div class="col-md-4">Role</div>
+    <div class="col-md-8">@Model.Role</div>
+
+    <div class="col-md-4">CreatedDate</div>
+    <div class="col-md-8">@Model.CreatedDate</div>
+    <div class="col-md-4">CreatedBy</div>
+    <div class="col-md-8">@Model.CreatedBy</div>
+
+    <div class="col-md-4">ModifiedBy</div>
+    <div class="col-md-8">@Model.ModifiedBy</div>
+
+    <div class="col-md-4">Modified Date</div>
+    <div class="col-md-8">@Model.ModifiedDate</div>
+
+
+</div>
+<a href="/SystemUsers/Edit?Id=@Model.Id" class="btn btn-secondary"><span class="fa fa-pencil" /></a>
+<a href="/SystemUsers/Delete?Id=@Model.Id" class="btn btn-danger"><span class="fa fa-trash" /></a>
+            

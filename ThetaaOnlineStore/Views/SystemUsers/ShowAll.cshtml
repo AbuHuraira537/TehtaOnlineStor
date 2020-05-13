@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ThetaaOnlineStore.Models.SystemUser>
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "ShowAll";
+}
+
+<h1>ShowAll System Users</h1>
+<form action="/SystemUsers/ShowAll" method="post">
+    <label for="searchquery">Search User Here:</label>
+    <input type="text" class="form-control" name="searchquery" id="searchquery">
+    <input type="submit" value="searrch" />
+</form>
+<table class="table table-md-responsive">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SystemUser su in Model)
+        {
+            string cla = "";
+            if (su.Status == "Active")
+            {
+                cla = "table-active";
+            }
+
+
+            <tr class="@cla">
+                <th scope="row">@su.Id</th>
+                <td>@su.DisplayName</td>
+                <td>@su.Email</td>
+                <td>@su.Mobile</td>
+                <td>
+
+                    <a href="/SystemUsers/Detail?Id=@su.Id" class="btn btn-primary"><span class="fa fa-eye"></span></a>
+                    <a href="/SystemUsers/Edit?Id=@su.Id" class="btn btn-secondary"><span class="fa fa-pencil" /></a>
+                    <a href="/SystemUsers/Delete?Id=@su.Id" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal-@su.Id"><span class="fa fa-trash" /></a>
+                </td>
+            </tr>
+            <div class="modal" id="exampleModal-@su.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel-@su.Id">Alert To Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Doy you realy want to delete..click confirmdelete.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="/SystemUsers/Delete?Id=@su.Id" class="btn btn-primary">DeleteConfirm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </tbody>
+</table>
